@@ -59,3 +59,9 @@ Contributors
 * Mark Galloway
 * Abram Hindle
 * Cole Mackenzie
+
+
+---
+Additional Editations by Liam McDonald
+With code for "def hello():", "read_ws(ws,client):", "subscribe_socket(ws):", and the "Client:" class drawn from:
+https://github.com/abramhindle/WebSocketsExamples
