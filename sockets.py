@@ -108,20 +108,20 @@ def read_ws(ws,client):
 def subscribe_socket(ws):
     '''Fufill the websocket URL of /subscribe, every update notify the
        websocket and read updates from the websocket '''
-    # XXX: TODO IMPLEMENT ME
     client = Client()
     clients.append(client)
     g = gevent.spawn(read_ws, ws, client)
     try:
         while True:
             msg = client.get()
+            print("Flag", msg)
             ws.send(msg)
     except Exception as e:
         print("WS Error %s" % e)
     finally:
         clients.remove(client)
         gevent.kill(g)
-    return json.dumps("Subscribed")
+    return json.dumps({})
 
 
 # I give this to you, this is how you get the raw body/data portion of a post in flask
