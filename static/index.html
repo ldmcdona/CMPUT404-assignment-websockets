@@ -254,7 +254,6 @@ function wsSetup() {
     socket = new WebSocket(url);
     socket.onopen = function() {
         //XXX: TODO What are you going to do here?
-        socket.send("Test") //probably totally wrong
     };
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);
@@ -262,7 +261,10 @@ function wsSetup() {
     socket.onmessage = function(msg) {  
         try {
             debug("WebSocket Recv:" + msg.data);
-            //XXX: TODO What are you going to do here?            
+            //XXX: TODO What are you going to do here? 
+            //var message = JSON.parse(msg.data);
+            //Whats the equivalent of addMessage? 
+            addEntityWithoutName(msg)          
         } catch (e) {
             alert("socket on message: " + e);
         }
