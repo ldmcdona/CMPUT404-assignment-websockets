@@ -82,8 +82,8 @@ myWorld = World()
 
 def set_listener( entity, data ):
     ''' do something with the update ! '''
-    myWorld.set(entity, data)
-    myWorld.update_listeners(entity)
+    #myWorld.set(entity, data)
+    #myWorld.update_listeners(entity)
 
 myWorld.add_set_listener( set_listener )
         
@@ -99,6 +99,9 @@ def read_ws(ws,client):
             if msg is not None:
                 packet = json.loads(msg)
                 send_all_json(packet)
+                for item in packet:
+                    #print(item)
+                    myWorld.set(item, packet[item])
             else:
                 break
     except:
@@ -114,14 +117,14 @@ def subscribe_socket(ws):
     try:
         while True:
             msg = client.get()
-            print("Flag", msg)
+            #print("Flag", msg)
             ws.send(msg)
     except Exception as e:
         print("WS Error %s" % e)
     finally:
         clients.remove(client)
         gevent.kill(g)
-    return json.dumps({})
+    #return json.dumps({})
 
 
 # I give this to you, this is how you get the raw body/data portion of a post in flask
